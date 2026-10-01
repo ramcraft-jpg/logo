@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONECORE Pharma</title>
+  <style>
+    :root {
+      --brand-red: #e31e24;
+      --bg-white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-white);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    .hero-brand-section {
+      width: 100%;
+      max-width: 1300px;
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      width: 100%;
+      transform: translateX(120px);
+      animation: shiftFarLeft 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+    }
+
+    /* -------------------------------------------
+       ACCURATE LOGO LAYOUT (Matches Original Mark)
+    ------------------------------------------- */
+
+    /* Canvas size */
+    .logo-mark {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      flex-shrink: 0;
+    }
+
+    /* -------------------------------------------
+       STICK: Placed exactly where the green outline was drawn
+    ------------------------------------------- */
+    .brand-stick {
+      position: absolute;
+      bottom: 35px;
+      left: 45px;
+      width: 52px;
+      height: 170px;
+      background-color: var(--brand-red);
+      border-radius: 30px;
+      transform-origin: bottom center;
+      transform: rotate(38deg);
+      z-index: 1;
+    }
+
+    /* Rotating Orbit */
+    .dots-orbit {
+      position: absolute;
+      inset: 0;
+      animation: spinDial 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    /* 
+      ALL 5 CIRCLES: STRICTLY IDENTICAL 80px SIZE
+    */
+    .photo-dot {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 2;
+    }
+
+    .photo-dot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+      animation: counterSpin 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .photo-dot:hover {
+      transform: scale(1.18);
+      z-index: 10;
+    }
+
+    /* 
+      5 Image Circles: 80px diameter, evenly framing the remaining positions:
+    */
+    /* Position 1 (9 o'clock - Far Left, directly above the stick) */
+    .dot-1 {
+      top: 110px;
+      left: 10px;
+    }
+
+    /* Position 2 (11 o'clock - Top Left) */
+    .dot-2 {
+      top: 15px;
+      left: 55px;
+    }
+
+    /* Position 3 (1 o'clock - Top Right) */
+    .dot-3 {
+      top: 15px;
+      right: 55px;
+    }
+
+    /* Position 4 (3 o'clock - Far Right) */
+    .dot-4 {
+      top: 110px;
+      right: 10px;
+    }
+
+    /* Position 5 (5 o'clock - Bottom Right, beside the stick) */
+    .dot-5 {
+      bottom: 25px;
+      right: 65px;
+    }
+
+    /* -------------------------------------------
+       TYPOGRAPHY
+    ------------------------------------------- */
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateX(-40px);
+      animation: revealText 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.0s forwards;
+    }
+
+    .brand-name {
+      font-size: 5.6rem;
+      font-weight: 850;
+      color: var(--brand-red);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+
+    .brand-subtext {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--brand-red);
+      letter-spacing: 0.24em;
+      margin-top: 14px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @keyframes spinDial {
+      0% {
+        transform: rotate(-180deg) scale(0.6);
+        opacity: 0;
+      }
+
+      100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes counterSpin {
+      0% {
+        transform: rotate(180deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes shiftFarLeft {
+      0% {
+        transform: translateX(120px);
+      }
+
+      100% {
+        transform: translateX(-60px);
+      }
+    }
+
+    @keyframes revealText {
+      0% {
+        opacity: 0;
+        transform: translateX(-35px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .brand-lockup {
+        flex-direction: column;
+        animation: none;
+        transform: none;
+        gap: 30px;
+      }
+
+      .brand-text {
+        text-align: center;
+        align-items: center;
+        animation-delay: 1.4s;
+      }
+
+      .brand-name {
+        font-size: 3.5rem;
+      }
+
+      .brand-subtext {
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="hero-brand-section">
+    <div class="brand-lockup">
+
+      <div class="logo-mark">
+
+        <!-- Rotating 5 Circles (All locked to identical 82px size) -->
+        <div class="dots-orbit">
+          <div class="photo-dot dot-1" title="Field 1">
+            <img src="./assets/dot1.png" onerror="this.onerror=null; this.src='../assets/dot1.png';" alt="Field 1" />
+          </div>
+          <div class="photo-dot dot-2" title="Field 2">
+            <img src="./assets/dot2.png" onerror="this.onerror=null; this.src='../assets/dot2.png';" alt="Field 2" />
+          </div>
+          <div class="photo-dot dot-3" title="Field 3">
+            <img src="./assets/dot3.png" onerror="this.onerror=null; this.src='../assets/dot3.png';" alt="Field 3" />
+          </div>
+          <div class="photo-dot dot-4" title="Field 4">
+            <img src="./assets/dot4.png" onerror="this.onerror=null; this.src='../assets/dot4.png';" alt="Field 4" />
+          </div>
+          <div class="photo-dot dot-5" title="Field 5">
+            <img src="./assets/dot5.png" onerror="this.onerror=null; this.src='../assets/dot5.png';" alt="Field 5" />
+          </div>
+        </div>
+
+        <!-- Solid red stick pointing toward 3 o'clock -->
+        <div class="brand-stick"></div>
+      </div>
+
+      <div class="brand-text">
+        <h1 class="brand-name">ONECORE</h1>
+        <p class="brand-subtext">PHARMA PRIVATE LIMITED</p>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+
+</html>
